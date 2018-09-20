@@ -9,5 +9,6 @@
 #define TEST_PARSER_H
 
 // Function Prototypes
+void test_isValid_Success(void);
 
 #endif  // TEST_PARSER_H

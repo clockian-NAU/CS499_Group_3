@@ -75,7 +75,7 @@ bool mantissa(char numString[], int *numerator, int *denominator){
     return false;
 }
 
-// Maybe a general function combining characteristic() and 
+// Maybe a general function combining characteristic() and
 // mantissa(), implementing both to convert a string into int
 
 #endif  // STRING_TO_INT_CONVERTER.C

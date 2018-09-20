@@ -11,6 +11,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include "string_to_int_converter.h"
+
 // Struct declarations
 /*
 struct error{
@@ -20,5 +22,7 @@ struct error{
 */
 
 // Function Prototypes
+bool isdigit(int curr);
+bool isValid(char *numString);
 
 #endif  // PARSER_H

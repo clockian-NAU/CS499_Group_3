@@ -14,8 +14,37 @@
 #include <stdlib.h>
 #include "parser.h"
 
-// TODO: Function to determine if inputted string contains only
-//       numbers and a single "."
+// Function to determine if current char is a digit
+bool isdigit(int curr){
+  if (curr >= '0' && curr <= '9') return true;
+    return false;
+}
+
+/*
+ * @brief Determines if inputted string contains only numbers and a single "."
+ *
+ * @param numString[] Null terminated string containing a floating
+ *        point number
+ *
+ * @return Bool indicating success or failure
+ */
+bool isValid(char *numString){
+  int decimal_occured = 0;
+
+  for(int i = 0; numString[i] != '\0'; i++) {
+    if(!isdigit(numString[i]) && numString[i] != '.'){
+      return false;
+    }
+    else if (numString[i] == '.'){
+      if (decimal_occured == 1){
+        return false;
+      } else {
+        decimal_occured = 1;
+      }
+    }
+  }
+  return 1;
+}
 
 // TODO: Function to remove leading and trailing 0's from number
 //       may need to split into two different functions
