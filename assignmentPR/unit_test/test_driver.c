@@ -16,6 +16,6 @@ int main(){
 
     printf("\nTest parser.c\n");
     // Insert test_parser.c tests
-
+    test_isValid_Success();
     return 0;
 }

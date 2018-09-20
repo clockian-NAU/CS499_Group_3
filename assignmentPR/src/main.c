@@ -22,6 +22,6 @@ int main(int argc, char *argv[]){
     // Run functions
 
     // Print output
-    
+
     return 0;
 }
