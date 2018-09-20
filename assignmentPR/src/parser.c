@@ -14,7 +14,13 @@
 #include <stdlib.h>
 #include "parser.h"
 
-// Function to determine if current char is a digit
+/*
+ * @brief Determines if char is a interger
+ *
+ * @param curr is a single char
+ *
+ * @return Bool indicating success or failure
+ */
 bool isdigit(int curr){
   if (curr >= '0' && curr <= '9') return true;
     return false;
@@ -43,7 +49,7 @@ bool isValid(char *numString){
       }
     }
   }
-  return 1;
+  return true;
 }
 
 // TODO: Function to remove leading and trailing 0's from number
