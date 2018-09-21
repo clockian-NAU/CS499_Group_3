@@ -27,7 +27,7 @@ void test_exampleFunction_Success#(void){
 */
 
 void test_isValid_Success(void){
-  char test_string[] = "10.23";
+  char test_string[] = "12.34";
   int output = isValid(test_string);
   // Print output with success or failure
   if(output == 1){
