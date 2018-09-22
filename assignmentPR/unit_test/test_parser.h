@@ -10,5 +10,6 @@
 
 // Function Prototypes
 void test_isValid_Success(void);
+void test_addLeadingZero_Success(void);
 
 #endif  // TEST_PARSER_H

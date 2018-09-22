@@ -13,6 +13,7 @@
 
 #include <stdlib.h>
 #include "parser.h"
+#include <string.h>
 
 /*
  * @brief Determines if char is a interger
@@ -55,8 +56,19 @@ bool isValid(char *numString){
 // TODO: Function to remove leading and trailing 0's from number
 //       may need to split into two different functions
 
-// TODO: Function to add a leading 0 if there is no number in
-//       front of ".", i.e. ".01"
+/*
+ * @brief Function to add a leading 0 if there is no number in
+ *        front of ".", i.e. ".01"
+ *
+ * @param numString[] Null terminated string containing a floating
+ *        point number
+ *
+ * @return new char array with added 0
+ */
+char *addLeadingZero(char *numString){
+    char new_string[50] = "0";
+    return strcat(new_string, numString);
+}
 
 // TODO: Maybe a function to convert a given string to int
 

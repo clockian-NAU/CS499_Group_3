@@ -24,5 +24,6 @@ struct error{
 // Function Prototypes
 bool isdigit(int curr);
 bool isValid(char *numString);
+char *addLeadingZero(char *numString);
 
 #endif  // PARSER_H
