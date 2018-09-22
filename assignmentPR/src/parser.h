@@ -25,5 +25,7 @@ struct error{
 bool isdigit(int curr);
 bool isValid(char *numString);
 char *addLeadingZero(char *numString);
+char *getCharacteristic(char *numString, char *newString);
+char *getMantissa(char *numString, char *newString);
 
 #endif  // PARSER_H

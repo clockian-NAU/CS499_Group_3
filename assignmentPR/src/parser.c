@@ -12,6 +12,7 @@
 #define PARSER_C
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "parser.h"
 #include <string.h>
 
@@ -72,7 +73,41 @@ char *addLeadingZero(char *numString){
 
 // TODO: Maybe a function to convert a given string to int
 
-// TODO: Maybe a function to return two strings split along "."
+/*
+ * @brief function to return string left of  "."
+ *
+ * @param numString[] Null terminated string containing a floating
+ *        point number
+ *
+ * @return char array of characteristic
+ */
+char *getCharacteristic(char *numString, char *newString){
+    for(int i = 0; numString[i] != '.'; i++){
+        newString[i] = numString[i];
+    }
+    return newString;
+}
+
+/*
+ * @brief function to return string right of  "."
+ *
+ * @param numString[] Null terminated string containing a floating
+ *        point number
+ *
+ * @return char array of mantissa
+ */
+char *getMantissa(char *numString, char *newString){
+    int numStringIndex = 0;
+    int newStringIndex = 0;
+    while(numString[numStringIndex] != '.'){
+        numStringIndex++;
+    }
+    for(int i = numStringIndex+1; numString[i] != '\0'; i++){
+        newString[newStringIndex] = numString[i];
+        newStringIndex++;
+    }
+    return newString;
+}
 
 // TODO: Maybe a function to return a string representing the
 //       10 to the power of X based on the inputted int/string

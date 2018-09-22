@@ -18,5 +18,7 @@ int main(){
     // Insert test_parser.c tests
     test_isValid_Success();
     test_addLeadingZero_Success();
+    test_getCharacteristic_Success();
+    test_getMantissa_Success();
     return 0;
 }
