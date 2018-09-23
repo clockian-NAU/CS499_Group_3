@@ -21,6 +21,7 @@ int main(){
     test_isDigit_Fail2();
     test_isValid_Success1();
     test_isValid_Success2();
+    test_isValid_Success3();
     test_isValid_Fail1();
     test_isValid_Fail2();
     test_isValid_Fail3();

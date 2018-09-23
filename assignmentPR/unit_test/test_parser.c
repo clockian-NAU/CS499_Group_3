@@ -49,7 +49,7 @@ void test_isDigit_Fail2(void){
 
 void test_isValid_Success1(void){
     char test_string[] = "12.34";
-    
+
     bool output = isValid(test_string);
 
     if(output == true){
@@ -61,7 +61,7 @@ void test_isValid_Success1(void){
 
 void test_isValid_Success2(void){
     char test_string[] = ".34";
-    
+
     bool output = isValid(test_string);
 
     if(output == true){
@@ -71,9 +71,21 @@ void test_isValid_Success2(void){
     }
 }
 
+void test_isValid_Success3(void){
+    char test_string[] = "-12.34";
+
+    bool output = isValid(test_string);
+
+    if(output == true){
+        printf("Success: test_isValid_Success3\n");
+    } else {
+        printf("Error: test_isValid_Success3\n");
+    }
+}
+
 void test_isValid_Fail1(void){
     char test_string[] = ".12.34";
-    
+
     bool output = isValid(test_string);
 
     if(output == false){
@@ -86,7 +98,7 @@ void test_isValid_Fail1(void){
 
 void test_isValid_Fail2(void){
     char test_string[] = "12.34a";
-    
+
     bool output = isValid(test_string);
 
     if(output == false){
@@ -98,7 +110,7 @@ void test_isValid_Fail2(void){
 
 void test_isValid_Fail3(void){
     char *test_string = NULL;
-    
+
     bool output = isValid(test_string);
 
     if(output == false){
