@@ -39,13 +39,27 @@ void test_isValid_Success(void){
   }
 }
 
+// @brief testing invalid floating point string (\0)
+void test_isValid_Failure(void){
+    char test_string[] = "00";
+    memset(test_string, 0, sizeof(test_string));
+    int output = isValid(test_string);
+    // Print output with success or failure
+    if(output == 0){
+      printf("Success: test_isString_Failure1\n");
+    } else {
+      printf("Error: test_isString_Failure1\n");
+    }
+}
+
 // @brief test adding leading zero (.10)
 void test_addLeadingZero_Success(void){
   char test_string[] = ".10";
-  char new_string[] = "0.00000";
-  strcpy(new_string, addLeadingZero(test_string));
+  // must pass in a string of '0' for concat
+  char new_string[] = "0";
+  int output = addLeadingZero(test_string, new_string);
   // Print output with success or failure
-  if(strcmp("0.10", new_string) == 0){
+  if(output == 1){
       printf("Success: test_addLeadingZero_Success1\n");
   } else {
       printf("Error: test_addLeadingZero_Success1\n");

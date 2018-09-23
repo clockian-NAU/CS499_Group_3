@@ -24,7 +24,7 @@ struct error{
 // Function Prototypes
 bool isdigit(int curr);
 bool isValid(char *numString);
-char *addLeadingZero(char *numString);
+bool addLeadingZero(char *numString, char *new_string);
 char *getCharacteristic(char *numString, char *newString);
 char *getMantissa(char *numString, char *newString);
 

@@ -37,11 +37,14 @@ bool isdigit(int curr){
  * @return Bool indicating success or failure
  */
 bool isValid(char *numString){
-  int decimal_occured = 0;
+    if(numString[0] == '\0'){
+        return false;
+    }
+    int decimal_occured = 0;
 
-  for(int i = 0; numString[i] != '\0'; i++) {
-    if(!isdigit(numString[i]) && numString[i] != '.'){
-      return false;
+    for(int i = 0; numString[i] != '\0'; i++) {
+        if(!isdigit(numString[i]) && numString[i] != '.'){
+        return false;
     }
     else if (numString[i] == '.'){
       if (decimal_occured == 1){
@@ -50,8 +53,8 @@ bool isValid(char *numString){
         decimal_occured = 1;
       }
     }
-  }
-  return true;
+    }
+    return true;
 }
 
 // TODO: Function to remove leading and trailing 0's from number
@@ -62,13 +65,18 @@ bool isValid(char *numString){
  *        front of ".", i.e. ".01"
  *
  * @param numString[] Null terminated string containing a floating
- *        point number
+ *        point number, newString[] is the updated string with leading zero.
+ *        If a zero is not needed the numString will not be changed
  *
  * @return new char array with added 0
  */
-char *addLeadingZero(char *numString){
-    char new_string[50] = "0";
-    return strcat(new_string, numString);
+bool addLeadingZero(char *numString, char *new_string){
+    if(numString[0] != '.'){
+        return false;
+    } else {
+        strcat(new_string, numString);
+    }
+    return true;
 }
 
 // TODO: Maybe a function to convert a given string to int
@@ -77,7 +85,8 @@ char *addLeadingZero(char *numString){
  * @brief function to return string left of  "."
  *
  * @param numString[] Null terminated string containing a floating
- *        point number
+ *        point number, newString[] is placeholder where the Characteristic
+ *        will be stored into
  *
  * @return char array of characteristic
  */
@@ -92,7 +101,8 @@ char *getCharacteristic(char *numString, char *newString){
  * @brief function to return string right of  "."
  *
  * @param numString[] Null terminated string containing a floating
- *        point number
+ *        point number, newString[] is placeholder where the Mantissa
+ *        will be stored into
  *
  * @return char array of mantissa
  */

@@ -17,6 +17,7 @@ int main(){
     printf("\nTest parser.c\n");
     // Insert test_parser.c tests
     test_isValid_Success();
+    test_isValid_Failure();
     test_addLeadingZero_Success();
     test_getCharacteristic_Success();
     test_getMantissa_Success();
