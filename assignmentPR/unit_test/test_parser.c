@@ -8,85 +8,252 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "../src/string_to_int_converter.h"
 #include "../src/parser.h"
 
-/*
-General format of a test
+void test_isDigit_Success1(void){
+    char test = '5';
 
-// @brief what case you are testing (.01)
+    bool output = isDigit(test);
 
-void test_exampleFunction_Success#(void){
-    // Declare vars for test
-
-    // Run exampleFunction() and store output
-
-    // Print output with success or failure
-    if(output == 0.01){
-        printf("Success: test_exampleFunction_Success#");
+    if(output == true){
+        printf("Success: test_isDigit_Success1\n");
     } else {
-        printf("Error: test_exampleFunction_Success#");
-*/
-
-// @brief testing valid floating point string (12.34)
-void test_isValid_Success(void){
-  char test_string[] = "12.34";
-  int output = isValid(test_string);
-  // Print output with success or failure
-  if(output == 1){
-      printf("Success: test_isString_Success1\n");
-  } else {
-      printf("Error: test_isString_Success1\n");
-  }
+        printf("Error: test_isDigit_Success1\n");
+    }
 }
 
-// @brief testing invalid floating point string (\0)
-void test_isValid_Failure(void){
-    char *test_string = NULL;
-    int output = isValid(test_string);
-    // Print output with success or failure
-    if(output == 0){
-      printf("Success: test_isString_Failure1\n");
+void test_isDigit_Fail1(void){
+    char test = '.';
+
+    bool output = isDigit(test);
+
+    if(output == false){
+        printf("Success: test_isDigit_Fail1\n");
     } else {
-      printf("Error: test_isString_Failure1\n");
+        printf("Error: test_isDigit_Fail1\n");
+    }
+}
+
+void test_isDigit_Fail2(void){
+    char test = 'a';
+
+    bool output = isDigit(test);
+
+    if(output == false){
+        printf("Success: test_isDigit_Fail2\n");
+    } else {
+        printf("Error: test_isDigit_Fail2\n");
+    }
+}
+
+void test_isValid_Success1(void){
+    char test_string[] = "12.34";
+    
+    bool output = isValid(test_string);
+
+    if(output == true){
+        printf("Success: test_isValid_Success1\n");
+    } else {
+        printf("Error: test_isValid_Success1\n");
+    }
+}
+
+void test_isValid_Success2(void){
+    char test_string[] = ".34";
+    
+    bool output = isValid(test_string);
+
+    if(output == true){
+        printf("Success: test_isValid_Success2\n");
+    } else {
+        printf("Error: test_isValid_Success2\n");
+    }
+}
+
+void test_isValid_Fail1(void){
+    char test_string[] = ".12.34";
+    
+    bool output = isValid(test_string);
+
+    if(output == false){
+        printf("Success: test_isValid_Fail1\n");
+    } else {
+        printf("Error: test_isValid_Fail1\n");
+    }
+}
+
+
+void test_isValid_Fail2(void){
+    char test_string[] = "12.34a";
+    
+    bool output = isValid(test_string);
+
+    if(output == false){
+        printf("Success: test_isValid_Fail2\n");
+    } else {
+        printf("Error: test_isValid_Fail2\n");
+    }
+}
+
+void test_isValid_Fail3(void){
+    char *test_string = NULL;
+    
+    bool output = isValid(test_string);
+
+    if(output == false){
+        printf("Success: test_isValid_Fail3\n");
+    } else {
+        printf("Error: test_isValid_Fail3\n");
+    }
+}
+
+void test_strLength_Success1(void){
+    char test[] = "1234\0";
+
+    int output = strLength(test);
+
+    if(output == 4){
+        printf("Success: test_strLength_Success1\n");
+    } else {
+        printf("Error: test_strLength_Success1\n");
+    }
+}
+
+
+void test_strLength_Success2(void){
+    char *test = NULL;
+
+    int output = strLength(test);
+
+    if(output == 0){
+        printf("Success: test_strLength_Success2\n");
+    } else {
+        printf("Error: test_strLength_Success2\n");
+    }
+}
+
+void test_strLength_Success3(void){
+    char test[] = "\0";
+
+    int output = strLength(test);
+
+    if(output == 0){
+        printf("Success: test_strLength_Success3\n");
+    } else {
+        printf("Error: test_strLength_Success3\n");
+    }
+}
+
+void test_removeLeadingZeros_Success1(void){
+    char test[] = "001.100\0";
+
+    bool output = removeLeadingZeros(test);
+
+    if(output == true && strcmp(test, "1.100") == 0){
+        printf("Success: test_removeLeadingZeros_Success1\n");
+    } else {
+        printf("Error: test_removeLeadingZeros_Success1\n");
+    }
+}
+
+
+void test_removeLeadingZeros_Fail1(void){
+    char test[] = "1.100\0";
+
+    bool output = removeLeadingZeros(test);
+
+    if(output == false){
+        printf("Success: test_removeLeadingZeros_Fail1\n");
+    } else {
+        printf("Error: test_removeLeadingZeros_Fail1\n");
+    }
+}
+
+void test_removeLeadingZeros_Fail2(void){
+    char *test = NULL;
+
+    bool output = removeLeadingZeros(test);
+
+    if(output == false){
+        printf("Success: test_removeLeadingZeros_Fail2\n");
+    } else {
+        printf("Error: test_removeLeadingZeros_Fail2\n");
+    }
+}
+
+void test_removeTrailingZeros_Success1(void){
+    char test[] = "001.100";
+
+    bool output = removeTrailingZeros(test);
+
+    if(output == true && strcmp(test, "001.1") == 0){
+        printf("Success: test_removeTrailingZeros_Success1\n");
+    } else {
+        printf("Error: test_removeTrailingZeros_Success1\n");
+    }
+}
+
+void test_removeTrailingZeros_Fail1(void){
+    char test[] = "001.1";
+
+    bool output = removeTrailingZeros(test);
+
+    if(output == false){
+        printf("Success: test_removeTrailingZeros_Fail1\n");
+    } else {
+        printf("Error: test_removeTrailingZeros_Fail1\n");
+    }
+}
+
+void test_removeTrailingZeros_Fail2(void){
+    char *test = NULL;
+
+    bool output = removeTrailingZeros(test);
+
+    if(output == false){
+        printf("Success: test_removeTrailingZeros_Fail2\n");
+    } else {
+        printf("Error: test_removeTrailingZeros_Fail2\n");
     }
 }
 
 // @brief test adding leading zero (.10)
 void test_addLeadingZero_Success(void){
-  char test_string[] = ".10";
-  // must pass in a string of '0' for concat
-  char new_string[] = "0";
-  int output = addLeadingZero(test_string, new_string);
-  // Print output with success or failure
-  if(output == 1){
-      printf("Success: test_addLeadingZero_Success1\n");
-  } else {
-      printf("Error: test_addLeadingZero_Success1\n");
-  }
+    char test_string[] = ".10";
+    // Must pass in a string of '0' for concat
+    char new_string[] = "0";
+    int output = addLeadingZero(test_string, new_string);
+    // Print output with success or failure
+    if(output == 1){
+        printf("Success: test_addLeadingZero_Success1\n");
+    } else {
+        printf("Error: test_addLeadingZero_Success1\n");
+    }
 }
 
 // @brief testing getCharacteristic floating point string (12.34)
 void test_getCharacteristic_Success(void){
-  char test_string[] = "12.34";
-  char new_string[] = "00";
-  strcpy(new_string, getCharacteristic(test_string, new_string));
-  // Print output with success or failure
-  if(strcmp("12", new_string) == 0){
-      printf("Success: test_getCharacteristic_Success1\n");
-  } else {
-      printf("Error: test_getCharacteristic_Success1\n");
-  }
+    char test_string[] = "12.34";
+    char new_string[] = "00";
+    strcpy(new_string, getCharacteristic(test_string, new_string));
+    // Print output with success or failure
+    if(strcmp("12", new_string) == 0){
+        printf("Success: test_getCharacteristic_Success1\n");
+    } else {
+        printf("Error: test_getCharacteristic_Success1\n");
+    }
 }
 
 // @brief testing getMantissa floating point string (12.34)
 void test_getMantissa_Success(void){
-  char test_string[] = "12.34";
-  char new_string[] = "00";
-  strcpy(new_string, getMantissa(test_string, new_string));
-  // Print output with success or failure
-  if(strcmp("34", new_string) == 0){
-      printf("Success: test_getMantissa_Success1\n");
-  } else {
-      printf("Error: test_getMantissa_Success1\n");
-  }
+    char test_string[] = "12.34";
+    char new_string[] = "00";
+    strcpy(new_string, getMantissa(test_string, new_string));
+    // Print output with success or failure
+    if(strcmp("34", new_string) == 0){
+        printf("Success: test_getMantissa_Success1\n");
+    } else {
+        printf("Error: test_getMantissa_Success1\n");
+    }
 }
