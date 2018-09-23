@@ -157,7 +157,6 @@ bool removeTrailingZeros(char *numString){
     return true;
 }
 
-
 /*
  * @brief Function to add a leading 0 if there is no number in
  *        front of ".", i.e. ".01"
