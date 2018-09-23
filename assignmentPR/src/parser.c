@@ -38,7 +38,7 @@ bool isDigit(char curr){
  */
 bool isValid(char *numString){
     if(numString == NULL){
-    	return false;
+        return false;
     }
     int decimal_occured = 0;
 
@@ -94,7 +94,7 @@ bool removeLeadingZeros(char *numString){
     int numZeros = 0;
 
     if(numString == NULL){
-    	return false;
+        return false;
     }
     
     while(*numStrIter == '0'){
