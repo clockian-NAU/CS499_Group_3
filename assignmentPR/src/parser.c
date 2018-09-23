@@ -23,8 +23,8 @@
  *
  * @return Bool indicating success or failure
  */
-bool isdigit(int curr){
-  if (curr >= '0' && curr <= '9') return true;
+bool isDigit(char curr){
+    if (curr >= '0' && curr <= '9') return true;
     return false;
 }
 
@@ -37,7 +37,7 @@ bool isdigit(int curr){
  * @return Bool indicating success or failure
  */
 bool isValid(char *numString){
-    if(numString[0] == '\0'){
+    if(numString == NULL){
         return false;
     }
     int decimal_occured = 0;

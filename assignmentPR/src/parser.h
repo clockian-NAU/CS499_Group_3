@@ -22,7 +22,7 @@ struct error{
 */
 
 // Function Prototypes
-bool isdigit(int curr);
+bool isDigit(char curr);
 bool isValid(char *numString);
 bool addLeadingZero(char *numString, char *new_string);
 char *getCharacteristic(char *numString, char *newString);

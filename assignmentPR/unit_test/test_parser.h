@@ -10,6 +10,7 @@
 
 // Function Prototypes
 void test_isValid_Success(void);
+void test_isValid_Failure(void);
 void test_addLeadingZero_Success(void);
 void test_getCharacteristic_Success(void);
 void test_getMantissa_Success(void);

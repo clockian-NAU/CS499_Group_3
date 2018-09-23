@@ -41,8 +41,7 @@ void test_isValid_Success(void){
 
 // @brief testing invalid floating point string (\0)
 void test_isValid_Failure(void){
-    char test_string[] = "00";
-    memset(test_string, 0, sizeof(test_string));
+    char *test_string = NULL;
     int output = isValid(test_string);
     // Print output with success or failure
     if(output == 0){
