@@ -17,7 +17,7 @@
 #include <string.h>
 
 /*
- * @brief Determines if char is a interger
+ * @brief Determines if char is a integer
  *
  * @param curr is a single char
  *
@@ -46,13 +46,13 @@ bool isValid(char *numString){
         if(!isdigit(numString[i]) && numString[i] != '.'){
         return false;
     }
-    else if (numString[i] == '.'){
-      if (decimal_occured == 1){
-        return false;
-      } else {
-        decimal_occured = 1;
-      }
-    }
+        else if (numString[i] == '.'){
+          if (decimal_occured == 1){
+            return false;
+          } else {
+            decimal_occured = 1;
+          }
+        }
     }
     return true;
 }
@@ -95,7 +95,7 @@ char *getCharacteristic(char *numString, char *newString){
         newString[i] = numString[i];
     }
     return newString;
-}
+}cd .
 
 /*
  * @brief function to return string right of  "."
