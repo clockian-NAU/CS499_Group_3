@@ -12,12 +12,14 @@
 #define PARSER_C
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "parser.h"
+#include <string.h>
 
 /*
- * @brief Determines if char is a interger
+ * @brief Determines if char is a integer
  *
- * @param curr is a single char
+ * @param curr Is a single char
  *
  * @return Bool indicating success or failure
  */
@@ -35,11 +37,10 @@ bool isDigit(char curr){
  * @return Bool indicating success or failure
  */
 bool isValid(char *numString){
-    int decimal_occured = 0;
-    
     if(numString == NULL){
     	return false;
     }
+    int decimal_occured = 0;
 
     for(int i = 0; numString[i] != '\0'; i++) {
         if(!isDigit(numString[i]) && numString[i] != '.'){
@@ -147,15 +148,68 @@ bool removeTrailingZeros(char *numString){
     } else {
         return false;
     }
+    return true;
 }
 
 
-// TODO: Function to add a leading 0 if there is no number in
-//       front of ".", i.e. ".01"
+/*
+ * @brief Function to add a leading 0 if there is no number in
+ *        front of ".", i.e. ".01"
+ *
+ * @param numString[] Null terminated string containing a floating
+ *        point number, newString[] is the updated string with leading zero.
+ *        If a zero is not needed the numString will not be changed
+ *
+ * @return new char array with added 0
+ */
+bool addLeadingZero(char *numString, char *new_string){
+    if(numString[0] != '.'){
+        return false;
+    } else {
+        strcat(new_string, numString);
+    }
+    return true;
+}
+
+/*
+ * @brief function to return string left of  "."
+ *
+ * @param numString[] Null terminated string containing a floating
+ *        point number, newString[] is placeholder where the Characteristic
+ *        will be stored into
+ *
+ * @return char array of characteristic
+ */
+char *getCharacteristic(char *numString, char *newString){
+    for(int i = 0; numString[i] != '.'; i++){
+        newString[i] = numString[i];
+    }
+    return newString;
+}
+
+/*
+ * @brief function to return string right of  "."
+ *
+ * @param numString[] Null terminated string containing a floating
+ *        point number, newString[] is placeholder where the Mantissa
+ *        will be stored into
+ *
+ * @return char array of mantissa
+ */
+char *getMantissa(char *numString, char *newString){
+    int numStringIndex = 0;
+    int newStringIndex = 0;
+    while(numString[numStringIndex] != '.'){
+        numStringIndex++;
+    }
+    for(int i = numStringIndex+1; numString[i] != '\0'; i++){
+        newString[newStringIndex] = numString[i];
+        newStringIndex++;
+    }
+    return newString;
+}
 
 // TODO: Maybe a function to convert a given string to int
-
-// TODO: Maybe a function to return two strings split along "."
 
 // TODO: Maybe a function to return a string representing the
 //       10 to the power of X based on the inputted int/string

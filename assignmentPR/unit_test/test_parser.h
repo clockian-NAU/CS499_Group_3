@@ -26,5 +26,8 @@ void test_removeLeadingZeros_Fail2(void);
 void test_removeTrailingZeros_Success1(void);
 void test_removeTrailingZeros_Fail1(void);
 void test_removeTrailingZeros_Fail2(void);
+void test_addLeadingZero_Success(void);
+void test_getCharacteristic_Success(void);
+void test_getMantissa_Success(void);
 
 #endif  // TEST_PARSER_H

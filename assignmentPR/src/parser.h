@@ -21,5 +21,8 @@ bool isValid(char *numString);
 int strLength(char *str);
 bool removeLeadingZeros(char *numString);
 bool removeTrailingZeros(char *numString);
+bool addLeadingZero(char *numString, char *new_string);
+char *getCharacteristic(char *numString, char *newString);
+char *getMantissa(char *numString, char *newString);
 
 #endif  // PARSER_H

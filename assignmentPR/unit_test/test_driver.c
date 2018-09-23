@@ -15,6 +15,7 @@ int main(){
 
 
     printf("\nTest parser.c\n");
+
     test_isDigit_Success1();
     test_isDigit_Fail1();
     test_isDigit_Fail2();
@@ -32,6 +33,9 @@ int main(){
     test_removeTrailingZeros_Success1();
     test_removeTrailingZeros_Fail1();
     test_removeTrailingZeros_Fail2();
+    test_addLeadingZero_Success();
+    test_getCharacteristic_Success();
+    test_getMantissa_Success();
 
     return 0;
 }
