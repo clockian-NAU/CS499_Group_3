@@ -14,15 +14,12 @@
 #include "string_to_int_converter.h"
 
 // Struct declarations
-/*
-struct error{
-    int code;
-    char statement[100];
-};
-*/
 
 // Function Prototypes
-bool isdigit(int curr);
+bool isDigit(char curr);
 bool isValid(char *numString);
+int strLength(char *str);
+bool removeLeadingZeros(char *numString);
+bool removeTrailingZeros(char *numString);
 
 #endif  // PARSER_H

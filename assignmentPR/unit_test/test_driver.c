@@ -12,10 +12,26 @@
 
 int main(){
     printf("Test string_to_int_converter.c\n");\
-    // Insert test_string_to_int_converter.c tests
+
 
     printf("\nTest parser.c\n");
-    // Insert test_parser.c tests
-    test_isValid_Success();
+    test_isDigit_Success1();
+    test_isDigit_Fail1();
+    test_isDigit_Fail2();
+    test_isValid_Success1();
+    test_isValid_Success2();
+    test_isValid_Fail1();
+    test_isValid_Fail2();
+    test_isValid_Fail3();
+    test_strLength_Success1();
+    test_strLength_Success2();
+    test_strLength_Success3();
+    test_removeLeadingZeros_Success1();
+    test_removeLeadingZeros_Fail1();
+    test_removeLeadingZeros_Fail2();
+    test_removeTrailingZeros_Success1();
+    test_removeTrailingZeros_Fail1();
+    test_removeTrailingZeros_Fail2();
+
     return 0;
 }

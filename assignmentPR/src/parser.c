@@ -21,8 +21,8 @@
  *
  * @return Bool indicating success or failure
  */
-bool isdigit(int curr){
-  if (curr >= '0' && curr <= '9') return true;
+bool isDigit(char curr){
+    if (curr >= '0' && curr <= '9') return true;
     return false;
 }
 
@@ -35,25 +35,120 @@ bool isdigit(int curr){
  * @return Bool indicating success or failure
  */
 bool isValid(char *numString){
-  int decimal_occured = 0;
+    int decimal_occured = 0;
+    
+    if(numString == NULL){
+    	return false;
+    }
 
-  for(int i = 0; numString[i] != '\0'; i++) {
-    if(!isdigit(numString[i]) && numString[i] != '.'){
-      return false;
+    for(int i = 0; numString[i] != '\0'; i++) {
+        if(!isDigit(numString[i]) && numString[i] != '.'){
+            return false;
+        }
+        else if (numString[i] == '.'){
+            if (decimal_occured == 1){
+                return false;
+            } else {
+                decimal_occured = 1;
+            }
+        }
     }
-    else if (numString[i] == '.'){
-      if (decimal_occured == 1){
-        return false;
-      } else {
-        decimal_occured = 1;
-      }
-    }
-  }
-  return true;
+    return true;
 }
 
-// TODO: Function to remove leading and trailing 0's from number
-//       may need to split into two different functions
+/*
+ * @brief Determines the length of a given string
+ *
+ * @param *str Null terminated string to be measured
+ *
+ * @return The number of char's in the string, not 
+ *         including the terminating null. 0 if null or
+ *         first char is null
+ */
+int strLength(char *str){
+    int strLen = 0;
+
+    if(str == NULL){
+        return 0;
+    }
+
+    while( *str != '\0'){
+        strLen++;
+        str++;
+    }
+
+    return strLen;
+}
+
+/*
+ * @brief Removes any leading zeros from the given string
+ *
+ * @param *numString The str representing the floating point num
+ *
+ * @return Bool stating whether leading zeros were removed or not
+ */
+bool removeLeadingZeros(char *numString){
+    // Determine the # of 0's
+    char * numStrIter = numString;
+    int numZeros = 0;
+
+    if(numString == NULL){
+    	return false;
+    }
+    
+    while(*numStrIter == '0'){
+        numZeros++;
+        numStrIter++;
+    }
+    
+    // Move chars down str for the # of zeros
+    char *numStrBase = numString;
+    numStrIter = numString;
+    
+    numStrIter += numZeros;
+
+    if(numZeros != 0){
+        while(*numStrIter != '\0'){
+            *numStrBase = *numStrIter;
+            numStrBase++;
+            numStrIter++;
+        }
+
+        *numStrBase = '\0';
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/*
+ * @brief Removes any trailing zeros from the given string
+ *
+ * @param *numString The str representing the floating point num
+ *
+ * @return Bool stating whether leading zeros were removed or not
+ */
+bool removeTrailingZeros(char *numString){
+    if(numString == NULL){
+        return false;
+    }
+
+    int strLen = strLength(numString);
+    int numZeros = 0;
+
+    for(int i = strLen - 1; numString[i] == '0'; i--){
+        numZeros++;
+        numString[i] = '\0';
+    }
+
+    if(numZeros > 0){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 // TODO: Function to add a leading 0 if there is no number in
 //       front of ".", i.e. ".01"
