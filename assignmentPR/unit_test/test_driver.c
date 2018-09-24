@@ -47,6 +47,9 @@ int main(){
     test_getMantissa_Success();
 
     test_mantissa_Success1();
+    test_mantissa_Fail1();
+    test_characteristic_Success1();
+    test_characteristic_Fail1();
 
     return 0;
 }

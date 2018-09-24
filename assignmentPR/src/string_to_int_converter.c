@@ -35,15 +35,19 @@
  * @return Bool indicating success or failure
  */
 bool characteristic(char numString[], int *c){
-    // TODO: Check numstring for proper formatting
 
-    // TODO: Obtain string of the characteristic
+    int length = strLength(numString);
+    char result_string[length];
 
-    // TODO: Convert string to int
+    if(isValid(numString) == false){
+        return false;
+    }
 
-    // TODO: Store in c pointer and return True
-
-    return false;
+    char *characteristicRAW = malloc(sizeof(char) * length);
+    characteristicRAW = getCharacteristic(numString, result_string);
+    int characteristic = atoi(characteristicRAW);
+    *c = characteristic;
+    return true;
 }
 
 /*
