@@ -40,9 +40,15 @@ bool isValid(char *numString){
     if(numString == NULL){
         return false;
     }
+
+    int index = 0;
     int decimal_occured = 0;
 
-    for(int i = 0; numString[i] != '\0'; i++) {
+    if(numString[0] == '-'){
+        index = 1;
+    }
+
+    for(int i = index; numString[i] != '\0'; i++) {
         if(!isDigit(numString[i]) && numString[i] != '.'){
             return false;
         }
@@ -62,7 +68,7 @@ bool isValid(char *numString){
  *
  * @param *str Null terminated string to be measured
  *
- * @return The number of char's in the string, not 
+ * @return The number of char's in the string, not
  *         including the terminating null. 0 if null or
  *         first char is null
  */
@@ -96,16 +102,16 @@ bool removeLeadingZeros(char *numString){
     if(numString == NULL){
         return false;
     }
-    
+
     while(*numStrIter == '0'){
         numZeros++;
         numStrIter++;
     }
-    
+
     // Move chars down str for the # of zeros
     char *numStrBase = numString;
     numStrIter = numString;
-    
+
     numStrIter += numZeros;
 
     if(numZeros != 0){
@@ -150,7 +156,6 @@ bool removeTrailingZeros(char *numString){
     }
     return true;
 }
-
 
 /*
  * @brief Function to add a leading 0 if there is no number in

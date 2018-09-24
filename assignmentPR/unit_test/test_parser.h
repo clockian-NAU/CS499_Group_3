@@ -14,6 +14,7 @@ void test_isDigit_Fail1(void);
 void test_isDigit_Fail2(void);
 void test_isValid_Success1(void);
 void test_isValid_Success2(void);
+void test_isValid_Success3(void);
 void test_isValid_Fail1(void);
 void test_isValid_Fail2(void);
 void test_isValid_Fail3(void);
