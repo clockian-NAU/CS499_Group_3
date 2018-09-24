@@ -23,27 +23,8 @@
 #include <stdbool.h> 
 #include <string.h>
 #include "string_to_int_converter.h"
-
-/*
- * @brief convert a number string to real integer
- *
- * @param str[] A string only combining with numbers 
- *
- * @return int The integer after converting will be returned back
- */
-
-
-int convertStrToNum (char str[])
-{
-    int result = 0;
-    int len = strlen(str);
-    for(int i = 0; i < len; i++)
-    {
-        result = result * 10 + (str[i] - '0');
-    }
-    return result;
-}
-
+#include "parser.h"
+#include "parser.c"
 
 
 /*
@@ -62,70 +43,43 @@ bool characteristic(char numString[], int *c){
 
     
     // TODO: Obtain string of the characteristic
-    int length = strlen(numString);
-    char *resultString;
-    resultString = (char*)malloc(length*sizeof(char));
-    bool flag1 = true;
-    bool flag2 = true;
-    int countFloat = 0;
-    for (int i = 0; i < length; ++i)
+    char *new_string;
+    new_string = (char*)malloc(strLength(numString)*sizeof(char));
+    char *result_string;
+    result_string = (char*)malloc(strLength(numString)*sizeof(char));
+    bool error = true;
+    error = isValid(&numString);
+    if (error == false)
     {
-        if (numString[i] == '.')
-        {
-            flag1 = false;
-            countFloat = i;
-        }
-        if (numString[i] == '-')
-        {
-            flag2 = false;
-        }
+        return error;
     }
-    if(flag2 == false)
-    {
-        if (flag1 == false)
+    else{
+        if (isDigit(numString[0]) == '0' && isDigit(numString[1]) == '0')
         {
-            for (int i = 1; i < countFloat; ++i)
-            {
-                resultString[i-1] = numString[i];
-            }
+        error = removeLeadingZeros(numString);
+        }
+        if (isDigit(numString[0]) == '.')
+        {
+        error = addLeadingZero(numString, new_string);
+        }
+        strcpy(numString, new_string);
+        if (isDigit(numString[strLength(numString) - 1]) == '0')
+        {
+        error = removeTrailingZeros(numString);
+        }
+        result_string = getCharacteristic(numString, result_string);
+        if (result_string)
+        {
+            int result_number = atoi (&result_string);
+            return error;
         }
         else
         {
-            for (int i = 1; i < length; ++i)
-            {
-                resultString[i-1] = numString[i];
-            }
-        }
-    }
-    else
-    {
-        if (flag1 == false)
-        {
-            for (int i = 0; i < countFloat; ++i)
-            {
-                resultString[i] = numString[i];
-            }
-        }
-        else
-        {
-            strcpy(resultString, numString);
+            error = false;
+            return error;
         }
     }
     
-    
-    // TODO: Convert string to int
-    int result;
-    if(flag2 == false)
-    {
-        result = 0 - convertStrToNum(resultString);
-    }
-    else
-    {
-        result = convertStrToNum(resultString);
-    }
-    // TODO: Store in c pointer and return True
-    *c = result;
-    return true;
 }
 
 /*
@@ -148,45 +102,11 @@ bool mantissa(char numString[], int *numerator, int *denominator){
     // TODO: Obtain string of the mantissa
 
     // TODO: Convert string to int
-    int power = 1;
-    double result = 0;
-    int length = strlen(numString);
-    char *resultString;
-    resultString = (char*)malloc(length*sizeof(char));
-    bool flag = true;
-    int countFloat = 0;
-    for (int i = 0; i < length; ++i)
-    {
-        if (numString[i] == '.')
-        {
-            flag = false;
-            countFloat = i;
-        }
-    }
-    
-    if (flag == false)
-    {
-        for (int i = countFloat + 1; i < length; ++i)
-        {
-            resultString[i-(countFloat+1)] = numString[i];
-            power *= 10;
-        }
-    }
-    else
-    {
-        return false;
-    }
     // TODO: Construct denominator to be an int that is a power of
     //       10 that creates a proper float representing the
     //       mantissa and the numerator and denomiator are divided
 
     // TODO: Store numerator and denominator and return True
-    int template = convertStrToNum(resultString);
-    result = (double)template / power;
-    
-    *numerator = template;
-    *denominator = power;
-    return true;
 }
 
 // Maybe a general function combining characteristic() and 
@@ -197,6 +117,13 @@ bool finalResult(char numString[], int * c, int *numerator, int *denominator)
     bool result1 = characteristic(numString, c);
     bool result2 = mantissa(numString, numerator, denominator);
     printf("c is %d, numerator is %d, denominator is %d\n",*c, *numerator, *denominator );
-    return true;
+    if (result1 == true && result2 == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 #endif  // STRING_TO_INT_CONVERTER.C
