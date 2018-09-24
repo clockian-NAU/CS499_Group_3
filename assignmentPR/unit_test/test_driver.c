@@ -11,7 +11,12 @@
 #include "test_parser.h"
 
 int main(){
-    printf("Test string_to_int_converter.c\n");\
+    printf("Test string_to_int_converter.c\n");
+
+    test_mantissa_Success1();
+    test_mantissa_Fail1();
+    test_characteristic_Success1();
+    test_characteristic_Fail1();
 
 
     printf("\nTest parser.c\n");
@@ -45,11 +50,6 @@ int main(){
     test_addLeadingZero_Success();
     test_getCharacteristic_Success();
     test_getMantissa_Success();
-
-    test_mantissa_Success1();
-    test_mantissa_Fail1();
-    test_characteristic_Success1();
-    test_characteristic_Fail1();
 
     return 0;
 }
