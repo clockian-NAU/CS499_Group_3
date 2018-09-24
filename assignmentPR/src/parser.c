@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "parser.h"
-#include <string.h>
 
 /*
  * @brief Determines if char is a integer
@@ -95,14 +94,21 @@ int strLength(char *str){
  * @return Bool stating whether leading zeros were removed or not
  */
 bool removeLeadingZeros(char *numString){
-    // Determine the # of 0's
     char * numStrIter = numString;
     int numZeros = 0;
+    bool isNegative = false;
 
     if(numString == NULL){
         return false;
     }
 
+    // Skip the -
+    if(*numStrIter == '-'){
+        numStrIter++;
+        isNegative = true;
+    }
+
+    // Determine if and how many 0's to remove
     while(*numStrIter == '0'){
         numZeros++;
         numStrIter++;
@@ -111,6 +117,11 @@ bool removeLeadingZeros(char *numString){
     // Move chars down str for the # of zeros
     char *numStrBase = numString;
     numStrIter = numString;
+
+    if(isNegative){
+        numStrBase++;
+        numStrIter++;
+    }
 
     numStrIter += numZeros;
 
@@ -134,7 +145,7 @@ bool removeLeadingZeros(char *numString){
  *
  * @param *numString The str representing the floating point num
  *
- * @return Bool stating whether leading zeros were removed or not
+ * @return Bool stating whether trailing zeros were removed or not
  */
 bool removeTrailingZeros(char *numString){
     if(numString == NULL){
@@ -158,6 +169,76 @@ bool removeTrailingZeros(char *numString){
 }
 
 /*
+ * @brief Removes any leading spaces from a string
+ *
+ * @param The str representing the floating point num
+ *
+ * @return Bool indicating whether leading spaces where removed or not 
+ */
+bool removeLeadingSpaces(char *numString){ 
+    char * numStrIter = numString;
+    int numSpaces = 0;
+
+    if(numString == NULL){
+        return false;
+    }
+
+    // Determine if and how many spaces to remove
+    while(*numStrIter == ' '){
+        numSpaces++;
+        numStrIter++;
+    }
+
+    // Move chars down str for the # of zeros
+    char *numStrBase = numString;
+    numStrIter = numString;
+
+    numStrIter += numSpaces;
+
+    if(numSpaces != 0){
+        while(*numStrIter != '\0'){
+            *numStrBase = *numStrIter;
+            numStrBase++;
+            numStrIter++;
+        }
+
+        *numStrBase = '\0';
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/*
+ * @brief Removes any trailing spaces from the given string
+ *
+ * @param *numString The str representing the floating point num
+ *
+ * @return Bool stating whether trailing spaces were removed or not
+ */
+bool removeTrailingSpaces(char *numString){
+    if(numString == NULL){
+        return false;
+    }
+
+    int strLen = strLength(numString);
+    int numSpaces = 0;
+
+    for(int i = strLen - 1; numString[i] == ' '; i--){
+        numSpaces++;
+        numString[i] = '\0';
+    }
+
+    if(numSpaces > 0){
+        return true;
+    } else {
+        return false;
+    }
+    return true;
+}
+
+/*
  * @brief Function to add a leading 0 if there is no number in
  *        front of ".", i.e. ".01"
  *
@@ -171,7 +252,7 @@ bool addLeadingZero(char *numString, char *new_string){
     if(numString[0] != '.'){
         return false;
     } else {
-        strcat(new_string, numString);
+        strCat(new_string, numString);
     }
     return true;
 }
@@ -214,15 +295,64 @@ char *getMantissa(char *numString, char *newString){
     return newString;
 }
 
-// TODO: Maybe a function to convert a given string to int
+/*
+ * @brief Takes two strs and combines them, putting the source at the
+ *        end of the destination string
+ *
+ * @detail Ensure the destination str is big enough for the two str
+ *
+ * @param *dest Str that source will be combined into
+ * 
+ * @param *source Str that will be put at the end of the dest
+ *
+ * @return Str containing dest and source combined
+ */
+char * strCat(char *dest, char *source){
+    char *copyPtr = dest + strLength(dest);
 
-// TODO: Maybe a function to return a string representing the
-//       10 to the power of X based on the inputted int/string
-//       i.e. input->123 for 0.123 output->"1000"
+    while(*source != '\0'){
+        *copyPtr++ = *source++;
+    }
 
-// Some of the above functions maybe better placed in
-// string_to_int_converter.c
+    *copyPtr = '\0';
 
-// Any other functions necessary for operation of stringtoint
+    return dest;
+}
+
+/*
+ * @brief Compares two strings, 0 if they are equal
+ *
+ * @param *str1 Str that will be compared
+ *
+ * @param *str2 Str that will be compared
+ *
+ * @return 0 indicates the two str are the same
+ */
+int strCmp(char *str1, char *str2){
+    while(*str1 && (*str1 == *str2)){
+        str1++;
+        str2++;
+    }
+
+    return *(unsigned char *)str1 - *(unsigned char *)str2;
+}
+
+/*
+ * @brief Copies an str from source into dest
+ *
+ * @param dest[] Str that will hold copied array
+ *
+ * @param source[] Str that will be copied into dest
+ */
+void strCpy(char *dest, char *source){
+    int curLetter = 0;
+    while(true){
+        dest[curLetter] = source[curLetter];
+        
+        if(dest[curLetter] == '\0'){
+            break;
+        }
+    }
+}
 
 #endif  // PARSER_C

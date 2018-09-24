@@ -7,7 +7,6 @@
  */
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include "../src/string_to_int_converter.h"
 #include "../src/parser.h"
 
@@ -162,13 +161,24 @@ void test_removeLeadingZeros_Success1(void){
 
     bool output = removeLeadingZeros(test);
 
-    if(output == true && strcmp(test, "1.100") == 0){
+    if(output == true && strCmp(test, "1.100") == 0){
         printf("Success: test_removeLeadingZeros_Success1\n");
     } else {
         printf("Error: test_removeLeadingZeros_Success1\n");
     }
 }
 
+void test_removeLeadingZeros_Success2(void){
+    char test[] = "-001.100\0";
+
+    bool output = removeLeadingZeros(test);
+
+    if(output == true && strCmp(test, "-1.100") == 0){
+        printf("Success: test_removeLeadingZeros_Success2\n");
+    } else {
+        printf("Error: test_removeLeadingZeros_Success2\n");
+    }
+}
 
 void test_removeLeadingZeros_Fail1(void){
     char test[] = "1.100\0";
@@ -199,10 +209,22 @@ void test_removeTrailingZeros_Success1(void){
 
     bool output = removeTrailingZeros(test);
 
-    if(output == true && strcmp(test, "001.1") == 0){
+    if(output == true && strCmp(test, "001.1") == 0){
         printf("Success: test_removeTrailingZeros_Success1\n");
     } else {
         printf("Error: test_removeTrailingZeros_Success1\n");
+    }
+}
+
+void test_removeTrailingZeros_Success2(void){
+    char test[] = "-001.100";
+
+    bool output = removeTrailingZeros(test);
+
+    if(output == true && strCmp(test, "-001.1") == 0){
+        printf("Success: test_removeTrailingZeros_Success2\n");
+    } else {
+        printf("Error: test_removeTrailingZeros_Success2\n");
     }
 }
 
@@ -230,6 +252,78 @@ void test_removeTrailingZeros_Fail2(void){
     }
 }
 
+void test_removeLeadingSpaces_Success1(void){
+    char test[] = "   1.100";
+
+    bool output = removeLeadingSpaces(test);
+
+    if(output == true && strCmp(test, "1.100") == 0){
+        printf("Success: test_removeLeadingSpaces_Success1\n");
+    } else {
+        printf("Error: test_removeLeadingSpaces_Success1\n");
+    }
+}
+
+void test_removeLeadingSpaces_Success2(void){
+    char test[] = "   -1.100 ";
+
+    bool output = removeLeadingSpaces(test);
+
+    if(output == true && strCmp(test, "-1.100 ") == 0){
+        printf("Success: test_removeLeadingSpaces_Success2\n");
+    } else {
+        printf("Error: test_removeLeadingSpaces_Success2\n");
+    }
+}
+
+void test_removeLeadingSpaces_Fail1(void){
+    char test[] = "1.100";
+
+    bool output = removeLeadingSpaces(test);
+
+    if(output == false){
+        printf("Success: test_removeLeadingSpaces_Fail1\n");
+    } else {
+        printf("Error: test_removeLeadingSpaces_Fail1\n");
+    }
+}
+
+void test_removeTrailingSpaces_Success1(void){
+    char test[] = "1.100   ";
+
+    bool output = removeTrailingSpaces(test);
+
+    if(output == true && strCmp(test, "1.100") == 0){
+        printf("Success: test_removeTrailingSpaces_Success1\n");
+    } else {
+        printf("Error: test_removeTrailingSpaces_Success1\n");
+    }
+}
+
+void test_removeTrailingSpaces_Success2(void){
+    char test[] = "-1.100   ";
+
+    bool output = removeTrailingSpaces(test);
+
+    if(output == true && strCmp(test, "-1.100") == 0){
+        printf("Success: test_removeTrailingSpaces_Success2\n");
+    } else {
+        printf("Error: test_removeTrailingSpaces_Success2\n");
+    }
+}
+
+void test_removeTrailingSpaces_Fail1(void){
+    char test[] = "1.100";
+
+    bool output = removeTrailingSpaces(test);
+
+    if(output == false){
+        printf("Success: test_removeTrailingSpaces_Fail1\n");
+    } else {
+        printf("Error: test_removeTrailingSpaces_Fail1\n");
+    }
+}
+
 // @brief test adding leading zero (.10)
 void test_addLeadingZero_Success(void){
     char test_string[] = ".10";
@@ -247,25 +341,33 @@ void test_addLeadingZero_Success(void){
 // @brief testing getCharacteristic floating point string (12.34)
 void test_getCharacteristic_Success(void){
     char test_string[] = "12.34";
-    char new_string[] = "00";
-    strcpy(new_string, getCharacteristic(test_string, new_string));
+    char *new_string = malloc(sizeof(char) * 2);
+
+    new_string = getCharacteristic(test_string, new_string);
+  
     // Print output with success or failure
-    if(strcmp("12", new_string) == 0){
+    if(strCmp("12", new_string) == 0){
         printf("Success: test_getCharacteristic_Success1\n");
     } else {
         printf("Error: test_getCharacteristic_Success1\n");
     }
+
+    free(new_string);
 }
 
 // @brief testing getMantissa floating point string (12.34)
 void test_getMantissa_Success(void){
     char test_string[] = "12.34";
-    char new_string[] = "00";
-    strcpy(new_string, getMantissa(test_string, new_string));
+    char *new_string = malloc(sizeof(char) * 2);
+
+    new_string = getMantissa(test_string, new_string);
+
     // Print output with success or failure
-    if(strcmp("34", new_string) == 0){
+    if(strCmp("34", new_string) == 0){
         printf("Success: test_getMantissa_Success1\n");
     } else {
         printf("Error: test_getMantissa_Success1\n");
     }
+
+    free(new_string);
 }
