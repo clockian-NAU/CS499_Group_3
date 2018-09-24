@@ -56,9 +56,9 @@ void test_mantissa_Fail1(void){
     }
 }
 
-// @brief testing characteristic floating point string (2.351)
+// @brief testing characteristic floating point string (02.351)
 void test_characteristic_Success1(void){
-    char test_string[] = "2.351";
+    char test_string[] = "02.351";
     int c = 0;
 
     bool output = characteristic(test_string, &c);

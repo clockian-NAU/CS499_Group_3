@@ -36,6 +36,8 @@
  */
 bool characteristic(char numString[], int *c){
 
+    removeLeadingZeros(numString);
+
     int length = strLength(numString);
     char result_string[length];
 
