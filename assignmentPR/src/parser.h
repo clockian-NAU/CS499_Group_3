@@ -26,6 +26,7 @@ bool removeTrailingSpaces(char *numString);
 bool addLeadingZero(char *numString, char *new_string);
 char *getCharacteristic(char *numString, char *newString);
 char *getMantissa(char *numString, char *newString);
+int getMantissaLength(char *numString);
 char * strCat(char *dest, char *source);
 int strCmp(char *str1, char *str2);
 char *strCpy(char *destination, char *source);

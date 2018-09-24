@@ -296,6 +296,26 @@ char *getMantissa(char *numString, char *newString){
 }
 
 /*
+ * @brief Func to return the length of the mantissa
+ *
+ * @param numString[] Null terminated string containing a floating
+ *        point number
+ *
+ * @return Int of mantissa length
+ */
+int getMantissaLength(char *numString){
+    int mantissaIndex = 0;
+    int length = 0;
+    while(numString[mantissaIndex] != '.'){
+        mantissaIndex++;
+    }
+    for(int i = mantissaIndex+1; numString[i] != '\0'; i++){
+        length++;
+    }
+    return length;
+}
+
+/*
  * @brief Takes two strs and combines them, putting the source at the
  *        end of the destination string
  *

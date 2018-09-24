@@ -344,7 +344,7 @@ void test_getCharacteristic_Success(void){
     char *new_string = malloc(sizeof(char) * 2);
 
     new_string = getCharacteristic(test_string, new_string);
-  
+
     // Print output with success or failure
     if(strCmp("12", new_string) == 0){
         printf("Success: test_getCharacteristic_Success1\n");
@@ -361,7 +361,6 @@ void test_getMantissa_Success(void){
     char *new_string = malloc(sizeof(char) * 2);
 
     new_string = getMantissa(test_string, new_string);
-
     // Print output with success or failure
     if(strCmp("34", new_string) == 0){
         printf("Success: test_getMantissa_Success1\n");

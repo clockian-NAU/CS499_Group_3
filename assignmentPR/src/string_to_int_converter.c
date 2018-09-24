@@ -76,24 +76,25 @@ bool mantissa(char numString[], int *numerator, int *denominator){
     int length = strLength(numString);
     char newString[length];
 
-    strCpy(newString, numString);
-
+    int mantissalength = getMantissaLength(numString);
     // Get the digits to the right of the decimal point
-    char mantissaRAW[length];
-    strCpy(mantissaRAW, getMantissa(numString, newString));
+    //char mantissaRAW[length];
+    char *mantissaRAW = malloc(sizeof(char) * mantissalength);
+    mantissaRAW = getMantissa(numString, newString);
 
     // Determine how many figures are to the right of the decimal point
-    length = strLength(mantissaRAW);
     removeLeadingZeros(mantissaRAW);
+    removeTrailingSpaces(mantissaRAW);
+
     // Remove leading zeros from the 'mantissa'
     int sanitizedMantissa = atoi(mantissaRAW);
     // Minimum denominator is 10
     int realDenom = 10;
 
     // Calculate the denominator by repeatedly multiplying by 10
-    while(length > 1){
-        length = length - 1;
-        realDenom = realDenom*10;
+    while(mantissalength >= 1){
+        mantissalength--;
+        realDenom *= 10;
     }
 
     // Set the return values
