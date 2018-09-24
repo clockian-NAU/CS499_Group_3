@@ -60,19 +60,43 @@ bool characteristic(char numString[], int *c){
  * @return Bool indicating success or failure
  */
 bool mantissa(char numString[], int *numerator, int *denominator){
-    // TODO: Check numstring for proper formatting
 
-    // TODO: Obtain string of the mantissa
+    removeTrailingSpaces(*numString);
+    removeLeadingSpaces(*numString);
+    
+    removeTrailingZeros(*numString);
+    removeLeadingZeros(*numString);
+    
+    if( isValid(numString) == false){
+        return false;
+    }
 
-    // TODO: Convert string to int
+    // Variable declarations
+    int length;
+    char newString[] = strcopy(numString);
+    
+    // Get the digits to the right of the decimal point
+    char mantissaRAW[] = strcopy(getMantissa(numString, newString));
+    
+    // Determine how many figures are to the right of the decimal point
+    length = strlength(mantissaRAW);
 
-    // TODO: Construct denominator to be an int that is a power of
-    //       10 that creates a proper float representing the
-    //       mantissa and the numerator and denomiator are divided
-
-    // TODO: Store numerator and denominator and return True
-
-    return false;
+    // Remove leading zeros from the 'mantissa'
+    int sanitizedMantissa = atoi(removeLeadingZeros(mantissaRAW));
+    
+    // Minimum denominator is 10
+    int realDenom = 10;
+    
+    // Calculate the denominator by repeatedly multiplying by 10
+    while(length > 1){
+        length = length - 1;
+        realDenom = realDenom*10;
+    }
+   
+    // Set the return values
+    *numerator = sanitizedMantissa;
+    *denominator = realDenom;
+    return true;
 }
 
 // Maybe a general function combining characteristic() and
