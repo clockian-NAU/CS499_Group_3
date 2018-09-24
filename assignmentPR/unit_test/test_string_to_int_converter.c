@@ -25,3 +25,17 @@ void test_exampleFunction_Success#(void){
     } else {
         printf("Error: test_exampleFunction_Success#");
 */
+
+void test_mantissa_Success1(void){
+    char test_string[] = "2.351";
+    int numerator = 351;
+    int denominator = 10000;
+
+    bool output = mantissa(test_string, &numerator, &denominator);
+
+    if(output == true){
+        printf("Success: test_mantissa_Success1\n");
+    } else {
+        printf("Error: test_mantissa_Success1\n");
+    }
+}

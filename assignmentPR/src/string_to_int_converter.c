@@ -20,6 +20,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "parser.h"
 #include "string_to_int_converter.h"
 
 /*
@@ -60,19 +61,45 @@ bool characteristic(char numString[], int *c){
  * @return Bool indicating success or failure
  */
 bool mantissa(char numString[], int *numerator, int *denominator){
-    // TODO: Check numstring for proper formatting
 
-    // TODO: Obtain string of the mantissa
+    removeTrailingSpaces(numString);
+    removeLeadingSpaces(numString);
 
-    // TODO: Convert string to int
+    removeTrailingZeros(numString);
+    removeLeadingZeros(numString);
 
-    // TODO: Construct denominator to be an int that is a power of
-    //       10 that creates a proper float representing the
-    //       mantissa and the numerator and denomiator are divided
+    if( isValid(numString) == false){
+        return false;
+    }
 
-    // TODO: Store numerator and denominator and return True
+    // Variable declarations
+    int length = strLength(numString);
+    char newString[length];
 
-    return false;
+    strCpy(newString, numString);
+
+    // Get the digits to the right of the decimal point
+    char mantissaRAW[length];
+    strCpy(mantissaRAW, getMantissa(numString, newString));
+
+    // Determine how many figures are to the right of the decimal point
+    length = strLength(mantissaRAW);
+    removeLeadingZeros(mantissaRAW);
+    // Remove leading zeros from the 'mantissa'
+    int sanitizedMantissa = atoi(mantissaRAW);
+    // Minimum denominator is 10
+    int realDenom = 10;
+
+    // Calculate the denominator by repeatedly multiplying by 10
+    while(length > 1){
+        length = length - 1;
+        realDenom = realDenom*10;
+    }
+
+    // Set the return values
+    *numerator = sanitizedMantissa;
+    *denominator = realDenom;
+    return true;
 }
 
 // Maybe a general function combining characteristic() and

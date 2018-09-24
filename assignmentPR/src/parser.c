@@ -173,9 +173,9 @@ bool removeTrailingZeros(char *numString){
  *
  * @param The str representing the floating point num
  *
- * @return Bool indicating whether leading spaces where removed or not 
+ * @return Bool indicating whether leading spaces where removed or not
  */
-bool removeLeadingSpaces(char *numString){ 
+bool removeLeadingSpaces(char *numString){
     char * numStrIter = numString;
     int numSpaces = 0;
 
@@ -302,7 +302,7 @@ char *getMantissa(char *numString, char *newString){
  * @detail Ensure the destination str is big enough for the two str
  *
  * @param *dest Str that source will be combined into
- * 
+ *
  * @param *source Str that will be put at the end of the dest
  *
  * @return Str containing dest and source combined
@@ -344,15 +344,20 @@ int strCmp(char *str1, char *str2){
  *
  * @param source[] Str that will be copied into dest
  */
-void strCpy(char *dest, char *source){
-    int curLetter = 0;
-    while(true){
-        dest[curLetter] = source[curLetter];
-        
-        if(dest[curLetter] == '\0'){
-            break;
-        }
+char *strCpy(char *destination, char *source)
+{
+    char *start = destination;
+
+    while(*source != '\0')
+    {
+        *destination = *source;
+        destination++;
+        source++;
     }
+
+    *destination = '\0'; // add '\0' at the end
+    return start;
 }
+
 
 #endif  // PARSER_C

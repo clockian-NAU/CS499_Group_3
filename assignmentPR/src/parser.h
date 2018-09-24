@@ -28,6 +28,6 @@ char *getCharacteristic(char *numString, char *newString);
 char *getMantissa(char *numString, char *newString);
 char * strCat(char *dest, char *source);
 int strCmp(char *str1, char *str2);
-void strCpy(char *dest, char *source);
+char *strCpy(char *destination, char *source);
 
 #endif  // PARSER_H

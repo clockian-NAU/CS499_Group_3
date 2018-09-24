@@ -9,5 +9,6 @@
 #define TEST_STRING_TO_INT_CONVERTER_H
 
 // Function Prototypes
+void test_mantissa_Success1(void);
 
 #endif  // TEST_STRING_TO_INT_CONVERTER_H
