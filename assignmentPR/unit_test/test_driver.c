@@ -14,9 +14,22 @@ int main(){
     printf("Test string_to_int_converter.c\n");
 
     test_mantissa_Success1();
+    test_mantissa_Success2();
+    test_mantissa_Success3();
+    test_mantissa_Success4();
+    test_mantissa_Success5();
+    test_mantissa_Success6();
+    test_mantissa_Success7();
     test_mantissa_Fail1();
+    test_mantissa_Fail2();
+    test_mantissa_Fail3();
     test_characteristic_Success1();
+    test_characteristic_Success2();
+    //test_characteristic_Success3();
+    test_characteristic_Success4();
     test_characteristic_Fail1();
+    test_characteristic_Fail2();
+    test_characteristic_Fail3();
 
 
     printf("\nTest parser.c\n");

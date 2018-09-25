@@ -35,20 +35,22 @@
  * @return Bool indicating success or failure
  */
 bool characteristic(char numString[], int *c){
-
-    removeLeadingZeros(numString);
-
     int length = strLength(numString);
-    char result_string[length];
+    //char *characteristicRAW = malloc(sizeof(char) * length);
+    char resultString[length];
 
     if(isValid(numString) == false){
         return false;
     }
 
-    char *characteristicRAW = malloc(sizeof(char) * length);
-    characteristicRAW = getCharacteristic(numString, result_string);
-    int characteristic = atoi(characteristicRAW);
-    *c = characteristic;
+    removeLeadingSpaces(numString);
+    removeLeadingZeros(numString);
+    
+    addLeadingZero(numString, "0");
+
+    getCharacteristic(numString, resultString);
+    *c = atoi(resultString);
+    
     return true;
 }
 
@@ -67,17 +69,13 @@ bool characteristic(char numString[], int *c){
  * @return Bool indicating success or failure
  */
 bool mantissa(char numString[], int *numerator, int *denominator){
-
-    removeTrailingSpaces(numString);
-    removeLeadingSpaces(numString);
-
-    removeTrailingZeros(numString);
-    removeLeadingZeros(numString);
-
     if( isValid(numString) == false){
         return false;
     }
 
+    removeTrailingSpaces(numString);
+    removeTrailingZeros(numString);
+    
     // Variable declarations
     int length = strLength(numString);
     char newString[length];
@@ -89,11 +87,9 @@ bool mantissa(char numString[], int *numerator, int *denominator){
     mantissaRAW = getMantissa(numString, newString);
 
     // Determine how many figures are to the right of the decimal point
-    removeLeadingZeros(mantissaRAW);
-    removeTrailingSpaces(mantissaRAW);
-
     // Remove leading zeros from the 'mantissa'
     int sanitizedMantissa = atoi(mantissaRAW);
+
     // Minimum denominator is 10
     int realDenom = 10;
 
@@ -106,6 +102,7 @@ bool mantissa(char numString[], int *numerator, int *denominator){
     // Set the return values
     *numerator = sanitizedMantissa;
     *denominator = realDenom;
+    
     return true;
 }
 
