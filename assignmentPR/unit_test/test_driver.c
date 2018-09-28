@@ -27,6 +27,9 @@ int main(){
     test_characteristic_Success2();
     //test_characteristic_Success3();
     test_characteristic_Success4();
+    test_characteristic_Success5();
+    test_characteristic_Success6();
+    //test_characteristic_Success7();
     test_characteristic_Fail1();
     test_characteristic_Fail2();
     test_characteristic_Fail3();
