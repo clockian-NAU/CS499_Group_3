@@ -215,6 +215,45 @@ void test_characteristic_Success4(void){
     }
 }
 
+void test_characteristic_Success5(void){
+    char test_string[] = "2.";
+    int c = 0;
+
+    bool output = characteristic(test_string, &c);
+
+    if(output == true && c == 2){
+        printf("Success: test_characteristic_Success5\n");
+    } else {
+        printf("Error: test_characteristic_Success5\n");
+    }
+}
+
+void test_characteristic_Success6(void){
+    char test_string[] = "-2.2";
+    int c = 0;
+
+    bool output = characteristic(test_string, &c);
+
+    if(output == true && c == 0){
+        printf("Success: test_characteristic_Success6\n");
+    } else {
+        printf("Error: test_characteristic_Success6\n");
+    }
+}
+
+/*void test_characteristic_Success7(void){
+    char test_string[] = ".1";
+    int c = 0;
+
+    bool output = characteristic(test_string, &c);
+
+    if(output == true && c == 0){
+        printf("Success: test_characteristic_Success7\n");
+    } else {
+        printf("Error: test_characteristic_Success7\n");
+    }
+}*/
+
 // @brief testing characteristic floating point string (2.2.351)
 void test_characteristic_Fail1(void){
     char test_string[] = "2.2.351";
