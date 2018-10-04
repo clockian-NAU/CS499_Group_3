@@ -72,3 +72,5 @@ If you are willing to contribute to the project you will find the relevant infor
 6. Create a new PR in GitHub.
 7. Respond to any code review feedback.
 
+### Is all of Sourcegraph open source?
+This repository is 100% open source and builds a product known as Kinect Laser Controller.
