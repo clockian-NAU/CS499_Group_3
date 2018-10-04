@@ -78,5 +78,5 @@ If you are willing to contribute to the project you will find the relevant infor
 
 Our team is thankful to all those who have pointed out bugs and submitted pull requests. we will need some time to review everything and we cannot guarantee that at this moment.
 
-### Is all of Sourcegraph open source?
+### Is all of our project open source?
 This repository is 100% open source and builds a product known as Kinect Laser Controller.
