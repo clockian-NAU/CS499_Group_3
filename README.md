@@ -58,8 +58,17 @@ SEE WIKI or link
 
 ## FAQ
 
-How do I contribute?
+What is "Open Source" software?
+Generally, Open Source software is software that can be freely accessed, used, changed, and shared (in modified or unmodified form) by anyone. Open source software is made by many people, and distributed under licenses that comply with the Open Source Definition.
+The internationally recognized Open Source Definition provides ten criteria that must be met for any software license, and the software distributed under that license, to be labeled "Open Source software." Only software licensed under an OSI-approved Open Source license should be labeled "Open Source" software.
 
-There is a long issue section, we label bugs 
+How to contribute?
+If you are willing to contribute to the project you will find the relevant information in our developer wiki. We will help you and answer your questions in the the comment page. The fundamentals are:
+1. Fork the project & clone locally.
+2. Create an upstream remote and sync your local copy before you branch.
+3. Branch for each separate piece of work.
+4. Do the work, write good commit messages, and read the CONTRIBUTING file if there is one.
+5. Push to your origin repository.
+6. Create a new PR in GitHub.
+7. Respond to any code review feedback.
 
-More common questions
