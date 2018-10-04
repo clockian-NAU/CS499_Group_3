@@ -62,6 +62,10 @@ SEE WIKI or link
 Generally, Open Source software is software that can be freely accessed, used, changed, and shared (in modified or unmodified form) by anyone. Open source software is made by many people, and distributed under licenses that comply with the Open Source Definition.
 The internationally recognized Open Source Definition provides ten criteria that must be met for any software license, and the software distributed under that license, to be labeled "Open Source software." Only software licensed under an OSI-approved Open Source license should be labeled "Open Source" software.
 
+### What license is Sourcegraph under?
+
+Kinect Laser Controller is under the [Apache License v2.0](../LICENSE).
+
 ### How to contribute?
 If you are willing to contribute to the project you will find the relevant information in our developer wiki. We will help you and answer your questions in the the comment page. The fundamentals are:
 1. Fork the project & clone locally.
